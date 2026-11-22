@@ -115,7 +115,32 @@ powershell -NoProfile -File scripts/sync-mirror.ps1 -NoPush   # 只检查不推
 
 脚本会先做发布前检查（`.env`/`state`/`logs` 不提交、无密钥），再推 `main` + tags 到两个远端。两个远端（GitHub/Gitee 的 `ec-hot`）已建好并 public，推完后两个平台的 `main` 应指向同一 commit。
 
-## 6. 排障
+## 6. 备份与恢复
+
+**自动备份**：worker 每天 04:10 跑 `ops.backup`，用 `pg_dump` 打成自定义格式压缩包上传到对象存储；只有 `.env` 配齐下面四项才启用（当前未配，等于没开）：
+
+```
+DB_BACKUP_STORE_SECRET_ID=...    # 腾讯云 COS / S3 兼容的 SecretId
+DB_BACKUP_STORE_SECRET_KEY=...   # SecretKey
+DB_BACKUP_STORE_BUCKET=...       # 桶名
+DB_BACKUP_STORE_REGION=...       # 地域，如 ap-guangzhou
+DB_BACKUP_STORE_DOMAIN=...       # 可选，自定义域名
+```
+
+**手动备份 / 恢复**（在 WSL 里执行）：
+
+```bash
+cd /mnt/c/Users/19024/Documents/ecommerce-hot/AIHOT
+# 备份到当前目录
+docker compose exec db pg_dump -U aihot -d aihot --format=custom --file=/tmp/echot.dump
+docker compose cp db:/tmp/echot.dump ./echot-$(date +%F).dump
+
+# 恢复（覆盖现有数据，不可逆，先确认）
+docker compose cp ./echot-2026-11-22.dump db:/tmp/restore.dump
+docker compose exec db pg_restore -U aihot -d aihot --clean --if-exists /tmp/restore.dump
+```
+
+## 7. 排障
 
 | 现象 | 先看 | 常见处理 |
 |---|---|---|
@@ -127,7 +152,7 @@ powershell -NoProfile -File scripts/sync-mirror.ps1 -NoPush   # 只检查不推
 | 双推失败 | `scripts/sync-mirror.ps1` 的报错 | 它会把 git 报错翻译成人话（仓库不存在 / SSH / 网络 / 冲突） |
 | 站点想清空重来 | `docker compose down -v` | 删数据卷不可逆，先确认再执行 |
 
-## 7. 密钥与红线
+## 8. 密钥与红线
 
 - 密钥只在各目录的 `.env`（站点 `AIHOT/.env`、早报 `AIHOT/modules/feishu-digest/.env`），均已 gitignore，**绝不写进 issue、代码或本手册**。
 - 站名统一「电商 HOT」，不用 AIHOT 的名字和 Logo。
