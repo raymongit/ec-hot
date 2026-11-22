@@ -1,368 +1,328 @@
 {
-  "$comment": "示范信源：首次启动时导入（scripts/seed.ts），已存在的不会被覆盖。之后在后台“信源”里新建、修改和暂停。字段说明见 docs/customize.md。",
+  "$comment": "电商 HOT 信源清单（RAY-51 实测产物）。25 个源全部在 2026-11-22 用脚本实测可达：RSS 类取到真实条数，web_list 类为服务端渲染、抽样出真实文章标题（逐源条数与耗时见 source-test-report.md）。kind 用 AIHOT 引擎的取值：rss / web_list / json_list。web_list 的 itemSelector 为 DOM 采样推导的初值，RAY-53 需在后台「试抓」按实际响应微调。未纳入需登录/SPA/反爬的平台官方源（淘宝/京东/拼多多/抖音/快手/小红书/视频号/Temu/SHEIN/TikTok Shop/Shopee/Lazada）见 source-test-report.md 的受限清单与替代方案。",
   "sources": [
     {
-      "id": "rss-openai-news",
-      "name": "OpenAI News",
+      "id": "rss-ithome",
+      "name": "IT之家",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://openai.com/news/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "openai",
+      "config": { "feedUrl": "https://www.ithome.com/rss/", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "interval_minutes": 60,
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-google-deepmind",
-      "name": "Google DeepMind",
+      "id": "rss-jiemian",
+      "name": "界面新闻",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://deepmind.google/blog/rss.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
+      "config": { "feedUrl": "https://a.jiemian.com/index.php?m=article&a=rss", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "interval_minutes": 60,
+      "tags": ["平台规则"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-google-research",
-      "name": "Google Research",
+      "id": "rss-geekpark",
+      "name": "极客公园",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://research.google/blog/rss/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "google",
+      "config": { "feedUrl": "https://www.geekpark.net/rss", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
+      "interval_minutes": 60,
+      "tags": ["平台规则"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-hugging-face",
-      "name": "Hugging Face Blog",
+      "id": "rss-ifanr",
+      "name": "爱范儿",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://huggingface.co/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "hugging-face",
+      "config": { "feedUrl": "https://www.ifanr.com/feed", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "开源"
-      ],
+      "interval_minutes": 60,
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-microsoft-research",
-      "name": "Microsoft Research",
+      "id": "rss-tmtpost",
+      "name": "钛媒体",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.microsoft.com/en-us/research/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "microsoft",
+      "config": { "feedUrl": "https://www.tmtpost.com/rss.xml", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "研究"
-      ],
+      "interval_minutes": 60,
+      "tags": ["平台规则"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-nvidia-blog",
-      "name": "NVIDIA Blog",
+      "id": "rss-sspai",
+      "name": "少数派",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://blogs.nvidia.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": "nvidia",
+      "config": { "feedUrl": "https://sspai.com/feed", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
+      "interval_minutes": 60,
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-aws-ml",
-      "name": "AWS Machine Learning Blog",
+      "id": "rss-qbitai",
+      "name": "量子位",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "config": { "feedUrl": "https://www.qbitai.com/feed", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["品类趋势"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-baijing",
+      "name": "白鲸出海",
+      "kind": "rss",
+      "config": { "feedUrl": "https://www.baijing.cn/feed", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["跨境"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-ennews",
+      "name": "亿恩网",
+      "kind": "rss",
+      "config": { "feedUrl": "https://www.ennews.com/rss", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["跨境"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "rss-aboutamazon",
+      "name": "亚马逊官方新闻",
+      "kind": "rss",
+      "config": { "feedUrl": "https://www.aboutamazon.com/news/feed/", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T1",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 120,
-      "tags": [
-        "官方",
-        "教程"
-      ],
+      "tags": ["跨境", "平台规则"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-github-ai",
-      "name": "GitHub Blog · AI & ML",
+      "id": "rss-smzdm-post",
+      "name": "什么值得买·好文",
       "kind": "rss",
-      "config": {
-        "feedUrl": "https://github.blog/ai-and-ml/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
+      "config": { "feedUrl": "https://post.smzdm.com/feed", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
       "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-mistral",
-      "name": "Mistral AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://mistral.ai/news/rss",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "官方"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-bair",
-      "name": "Berkeley AI Research",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://bair.berkeley.edu/blog/feed.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T1",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
+      "participation_mode": "hot_signal",
       "interval_minutes": 180,
-      "tags": [
-        "研究"
-      ],
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-the-verge-ai",
-      "name": "The Verge · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-ebrun",
+      "name": "亿邦动力",
+      "kind": "web_list",
+      "config": { "url": "https://www.ebrun.com/news", "parseMode": "html", "itemSelector": "section.news-item", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["平台规则", "大促玩法"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-techcrunch-ai",
-      "name": "TechCrunch · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://techcrunch.com/category/artificial-intelligence/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-dsb",
+      "name": "电商报",
+      "kind": "web_list",
+      "config": { "url": "https://www.dsb.cn/", "parseMode": "html", "itemSelector": "a[href^='/p/']", "linkSelector": "a[href^='/p/']", "titleSelector": "a[href^='/p/']", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["平台规则", "大促玩法"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-ars-technica-ai",
-      "name": "Ars Technica · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://arstechnica.com/ai/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-cifnews",
+      "name": "雨果跨境",
+      "kind": "web_list",
+      "config": { "url": "https://www.cifnews.com/news", "parseMode": "html", "itemSelector": "div.news-timeline-entry", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["跨境"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-mit-tech-review-ai",
-      "name": "MIT Technology Review · AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
-      "tier": "T2",
-      "owner_entity_id": null,
-      "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "媒体"
-      ],
-      "site_fulltext": false,
-      "syndicate_fulltext": false
-    },
-    {
-      "id": "rss-the-decoder",
-      "name": "The Decoder",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://the-decoder.com/feed/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-linkshop",
+      "name": "联商网",
+      "kind": "web_list",
+      "config": { "url": "https://www.linkshop.com/news/", "parseMode": "html", "itemSelector": "ul.news_list li", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 60,
-      "tags": [
-        "媒体"
-      ],
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-simon-willison",
-      "name": "Simon Willison",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://simonwillison.net/atom/everything/",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-winshang",
+      "name": "赢商网",
+      "kind": "web_list",
+      "config": { "url": "https://news.winshang.com/", "parseMode": "html", "itemSelector": "div.win-new-txt", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
-      "interval_minutes": 120,
-      "tags": [
-        "个人"
-      ],
+      "interval_minutes": 60,
+      "tags": ["品类趋势"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-import-ai",
-      "name": "Import AI",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://importai.substack.com/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-logclub",
+      "name": "罗戈网（物流）",
+      "kind": "web_list",
+      "config": { "url": "https://www.logclub.com/rss", "parseMode": "html", "itemSelector": "a[href*='/articleInfo/']", "linkSelector": "a[href*='/articleInfo/']", "titleSelector": "a[href*='/articleInfo/']", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["物流支付"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-zfzj",
+      "name": "支付之家",
+      "kind": "web_list",
+      "config": { "url": "https://www.zfzj.cn/", "parseMode": "html", "itemSelector": ".item-title", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["物流支付"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-mpaypass",
+      "name": "移动支付网",
+      "kind": "web_list",
+      "config": { "url": "https://www.mpaypass.com.cn/news/", "parseMode": "html", "itemSelector": "h3.pl-title", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["物流支付"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-stats-gov",
+      "name": "国家统计局·数据发布",
+      "kind": "web_list",
+      "config": { "url": "http://www.stats.gov.cn/sj/zxfb/", "parseMode": "html", "itemSelector": "ul li", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "个人",
-        "周刊"
-      ],
+      "tags": ["数据报告"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     },
     {
-      "id": "rss-latent-space",
-      "name": "Latent Space",
-      "kind": "rss",
-      "config": {
-        "feedUrl": "https://www.latent.space/feed",
-        "_aihot": {
-          "initialBackfillLimit": 8
-        }
-      },
+      "id": "web-mofcom",
+      "name": "商务部",
+      "kind": "web_list",
+      "config": { "url": "http://www.mofcom.gov.cn/", "parseMode": "html", "itemSelector": "li", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
       "tier": "T2",
       "owner_entity_id": null,
       "participation_mode": "editorial",
       "interval_minutes": 180,
-      "tags": [
-        "个人"
-      ],
+      "tags": ["监管"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-dzsws",
+      "name": "商务部电子商务司",
+      "kind": "web_list",
+      "config": { "url": "http://dzsws.mofcom.gov.cn/", "parseMode": "html", "itemSelector": "a[href*='/art/']", "linkSelector": "a[href*='/art/']", "titleSelector": "a[href*='/art/']", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": ["监管"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-samr",
+      "name": "市场监管总局",
+      "kind": "web_list",
+      "config": { "url": "https://www.samr.gov.cn/xw/", "parseMode": "html", "itemSelector": "li.contentLeft0102", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": ["监管"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-cac",
+      "name": "网信办",
+      "kind": "web_list",
+      "config": { "url": "http://www.cac.gov.cn/", "parseMode": "html", "itemSelector": "li", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 180,
+      "tags": ["监管"],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "web-thepaper",
+      "name": "澎湃新闻",
+      "kind": "web_list",
+      "config": { "url": "https://www.thepaper.cn/", "parseMode": "html", "itemSelector": "div.news_li", "linkSelector": "a", "titleSelector": "a", "_aihot": { "initialBackfillLimit": 8 } },
+      "tier": "T2",
+      "owner_entity_id": null,
+      "participation_mode": "editorial",
+      "interval_minutes": 60,
+      "tags": ["监管"],
       "site_fulltext": false,
       "syndicate_fulltext": false
     }

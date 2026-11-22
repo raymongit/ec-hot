@@ -2,337 +2,230 @@
   "groups": [
     {
       "key": "company",
-      "name": "公司与模型",
-      "blurb": "按厂商追踪模型、产品与公司动态"
+      "name": "平台与公司",
+      "blurb": "按平台追踪规则、大促、跨境与公司动向"
     },
     {
       "key": "field",
-      "name": "技术方向",
-      "blurb": "按技术领域深挖：Agent、多模态、具身智能……"
+      "name": "玩法与机制",
+      "blurb": "按玩法深挖：直播电商、即时零售、仅退款、品牌出海……"
     },
     {
       "key": "genre",
       "name": "内容类型",
-      "blurb": "按体裁浏览：论文、教程、观点、政策……"
+      "blurb": "按内容浏览：平台规则、大促玩法、数据报告、监管……"
     }
   ],
   "topics": [
     {
-      "slug": "openai",
-      "name": "OpenAI / ChatGPT",
+      "slug": "taobao",
+      "name": "淘宝天猫",
       "group": "company",
-      "entityId": "openai",
-      "definition": "OpenAI 的 GPT 系列模型、ChatGPT 与 Sora 产品更新，以及公司战略与人事变化。"
+      "entityId": "taobao",
+      "definition": "淘宝、天猫与淘天集团的规则变化、大促玩法、商家政策与公司动向。"
     },
     {
-      "slug": "anthropic",
-      "name": "Anthropic / Claude",
+      "slug": "douyin",
+      "name": "抖音电商",
       "group": "company",
-      "entityId": "anthropic",
-      "definition": "Anthropic 的 Claude 系列模型、Claude Code 更新，以及安全研究与公司动向。"
+      "entityId": "douyin",
+      "definition": "抖音电商的规则、流量机制、直播带货、商城与达人生态。"
     },
     {
-      "slug": "google",
-      "name": "Google / Gemini",
+      "slug": "pinduoduo",
+      "name": "拼多多",
       "group": "company",
-      "entityId": "google",
-      "aliases": [
-        "DeepMind"
-      ],
-      "definition": "Google 与 DeepMind 的 Gemini 模型、Veo 视频生成、前沿研究与各条产品线的 AI 更新。"
+      "entityId": "pinduoduo",
+      "definition": "拼多多的低价策略、仅退款规则、大促与商家政策，以及 Temu 之外的国内业务。"
     },
     {
-      "slug": "deepseek",
-      "name": "DeepSeek",
+      "slug": "jd",
+      "name": "京东",
       "group": "company",
-      "entityId": "deepseek",
-      "definition": "DeepSeek（深度求索）的模型发布、开源权重、技术报告与 API 价格变化。"
+      "entityId": "jd",
+      "definition": "京东零售、京东物流与京东的规则变化、大促玩法、财报与组织调整。"
     },
     {
-      "slug": "qwen",
-      "name": "千问 Qwen",
+      "slug": "xiaohongshu",
+      "name": "小红书",
       "group": "company",
-      "entityId": "qwen",
-      "definition": "阿里千问 Qwen 系列的模型发布与开源更新，从旗舰大模型到能装进手机的小模型。"
+      "entityId": "xiaohongshu",
+      "definition": "小红书电商与内容商业化：买手、笔记带货、直播与商家政策。"
     },
     {
-      "slug": "kimi",
-      "name": "月之暗面 / Kimi",
+      "slug": "wechat-shop",
+      "name": "微信小店 / 视频号",
       "group": "company",
-      "entityId": "kimi",
-      "aliases": ["Kimi / 月之暗面"],
-      "definition": "月之暗面的 Kimi 产品更新、K 系列开源模型与长文本技术进展。"
+      "entityId": "wechat",
+      "definition": "微信小店与视频号的规则、带货激励、私域与内容电商变化。"
     },
     {
-      "slug": "minimax",
-      "name": "MiniMax",
+      "slug": "kuaishou",
+      "name": "快手电商",
       "group": "company",
-      "entityId": "minimax",
-      "definition": "MiniMax 的 M 系列大模型、语音与多模态能力，以及开源与商业化进展。"
+      "entityId": "kuaishou",
+      "definition": "快手电商的直播、大促、商家政策与信任电商玩法。"
     },
     {
-      "slug": "zhipu",
-      "name": "智谱 GLM",
+      "slug": "temu",
+      "name": "Temu",
       "group": "company",
-      "entityId": "zhipu",
-      "definition": "智谱 GLM 系列模型的发布与开源更新，以及编程、推理能力和商业化进展。"
+      "entityId": "temu",
+      "definition": "拼多多旗下 Temu 的跨境规则、半托管、物流与市场变化。"
     },
     {
-      "slug": "xai",
-      "name": "xAI / Grok",
+      "slug": "shein",
+      "name": "SHEIN",
       "group": "company",
-      "entityId": "xai",
-      "definition": "马斯克旗下 xAI 的 Grok 模型更新、算力集群建设与 X 平台整合。"
+      "entityId": "shein",
+      "definition": "SHEIN 的快时尚供应链、平台化、跨境物流与市场变化。"
     },
     {
-      "slug": "meta",
-      "name": "Meta / Llama",
+      "slug": "tiktok-shop",
+      "name": "TikTok Shop",
       "group": "company",
-      "entityId": "meta",
-      "definition": "Meta 的 Llama 与 Muse 系列模型、超级智能实验室与 Meta AI 产品。"
+      "entityId": "tiktokshop",
+      "definition": "TikTok Shop 的内容电商、直播带货、跨境政策与市场扩张。"
     },
     {
-      "slug": "microsoft",
-      "name": "Microsoft / Copilot",
+      "slug": "amazon",
+      "name": "亚马逊",
       "group": "company",
-      "entityId": "microsoft",
-      "definition": "微软的 Copilot 系列产品、Azure AI 云服务，以及与 OpenAI 的合作动向。"
+      "entityId": "amazon",
+      "definition": "亚马逊卖家政策、物流履约、广告与全球开店变化。"
     },
     {
-      "slug": "nvidia",
-      "name": "NVIDIA 英伟达",
+      "slug": "shopee",
+      "name": "Shopee",
       "group": "company",
-      "entityId": "nvidia",
-      "definition": "英伟达的 GPU 新品、CUDA 软件生态、机器人平台与 AI 算力供需。"
+      "entityId": "shopee",
+      "definition": "Shopee 与 Lazada 的东南亚电商政策、物流、大促与市场变化。"
     },
     {
-      "slug": "hugging-face",
-      "name": "Hugging Face",
+      "slug": "meituan",
+      "name": "美团 / 即时零售",
       "group": "company",
-      "entityId": "hugging-face",
-      "definition": "Hugging Face 社区的热门开源模型、数据集、工具与榜单变化。"
+      "entityId": "meituan",
+      "definition": "美团闪购等即时零售平台、前置仓与本地生活电商变化。"
     },
     {
-      "slug": "cursor",
-      "name": "Cursor",
-      "group": "company",
-      "entityId": "cursor",
-      "definition": "Cursor（Anysphere）的编辑器与编码 Agent 更新、自研模型与定价变化。"
-    },
-    {
-      "slug": "openrouter",
-      "name": "OpenRouter",
-      "group": "company",
-      "entityId": "openrouter",
-      "definition": "OpenRouter 平台的新模型上架、价格变化与开发者调用量排行。"
-    },
-    {
-      "slug": "agent",
-      "name": "Agent 智能体",
+      "slug": "livestream-ecommerce",
+      "name": "直播电商",
       "group": "field",
-      "tags": [
-        "Agent"
-      ],
-      "definition": "能自己拆解任务、调用工具、一步步把事办完的 AI 智能体：Claude Code、Manus 等应用，各家 Agent 框架与评测。"
+      "tags": ["直播电商"],
+      "definition": "直播带货的玩法、头部主播、投流机制与平台直播政策。"
     },
     {
-      "slug": "coding",
-      "name": "AI 编码",
+      "slug": "content-ecommerce",
+      "name": "内容电商",
       "group": "field",
-      "tags": [
-        "编码"
-      ],
-      "definition": "用 AI 写代码：编程助手、Vibe Coding、代码模型评测，以及开发方式的变化。"
+      "tags": ["内容电商"],
+      "definition": "笔记、短视频、图文带货等内容驱动的电商玩法与平台机制。"
     },
     {
-      "slug": "reasoning",
-      "name": "推理能力",
+      "slug": "instant-retail",
+      "name": "即时零售",
       "group": "field",
-      "tags": [
-        "推理"
-      ],
-      "definition": "让大模型先想再答的能力：思维链、推理模型，数学与逻辑评测上的突破和争议。"
+      "tags": ["即时零售"],
+      "definition": "30 分钟达、前置仓、外卖式零售的供给与格局变化。"
     },
     {
-      "slug": "multimodal",
-      "name": "多模态",
+      "slug": "refund-only",
+      "name": "仅退款",
       "group": "field",
-      "tags": [
-        "多模态"
-      ],
-      "definition": "文字之外的能力：看懂图片、图文混合理解、音视频输入输出的模型与产品进展。"
+      "tags": ["仅退款"],
+      "definition": "仅退款规则、运费险、售后政策与商家成本变化。"
     },
     {
-      "slug": "image-gen",
-      "name": "图像生成",
+      "slug": "cross-border",
+      "name": "跨境电商",
       "group": "field",
-      "tags": [
-        "图像生成"
-      ],
-      "definition": "AI 画图与修图：文生图模型更新、图像编辑能力与创作工具。"
+      "tags": ["跨境电商"],
+      "definition": "跨境平台政策、全托管与半托管、海外仓与品牌出海。"
     },
     {
-      "slug": "video",
-      "name": "AI 视频",
+      "slug": "brand-overseas",
+      "name": "品牌出海",
       "group": "field",
-      "tags": [
-        "视频"
-      ],
-      "definition": "AI 生成和理解视频：文生视频模型、视频编辑工具，以及影视创作的新做法。"
+      "tags": ["品牌出海"],
+      "definition": "中国品牌出海的渠道、打法、物流与本地化经营。"
     },
     {
-      "slug": "voice",
-      "name": "语音与音频",
+      "slug": "private-domain",
+      "name": "私域运营",
       "group": "field",
-      "tags": [
-        "语音"
-      ],
-      "definition": "AI 语音与音频：语音合成、实时语音对话、音乐生成与音频理解的模型与产品。"
+      "tags": ["私域运营"],
+      "definition": "微信、企微、社群等私域沉淀与复购的打法和工具。"
     },
     {
-      "slug": "embodied",
-      "name": "具身智能",
+      "slug": "white-label",
+      "name": "白牌与供应链",
       "group": "field",
-      "tags": [
-        "具身智能"
-      ],
-      "definition": "装进机器人身体里的 AI：人形机器人、具身基础模型，以及在真实环境里动手干活的能力。"
+      "tags": ["白牌"],
+      "definition": "白牌、工厂货、产业带与供应链格局的变化。"
     },
     {
-      "slug": "on-device",
-      "name": "端侧 AI",
+      "slug": "ai-ecommerce",
+      "name": "AI 电商",
       "group": "field",
-      "tags": [
-        "端侧"
-      ],
-      "definition": "直接跑在手机、电脑等设备上的 AI：小模型、在本机运行模型的工具与端侧芯片。"
+      "tags": ["AI电商"],
+      "definition": "AI 选品、AI 客服、AI 内容生成等电商提效工具与趋势。"
     },
     {
-      "slug": "open-source",
-      "name": "开源生态",
-      "group": "field",
-      "tags": [
-        "开源生态",
-        "开源/仓库"
-      ],
-      "definition": "开放权重、能下载下来自己部署的模型，开源框架与 GitHub 上爆火的 AI 项目。"
-    },
-    {
-      "slug": "engineering",
-      "name": "部署工程",
-      "group": "field",
-      "tags": [
-        "部署/工程"
-      ],
-      "definition": "怎么把模型跑得更快更省钱：推理加速、显存与成本、服务部署与基础设施选型。"
-    },
-    {
-      "slug": "data-training",
-      "name": "数据与训练",
-      "group": "field",
-      "tags": [
-        "数据/训练"
-      ],
-      "definition": "大模型是怎么练出来的：数据集构建、合成数据、预训练与后训练方法、算力与训练成本。"
-    },
-    {
-      "slug": "safety",
-      "name": "安全对齐",
-      "group": "field",
-      "tags": [
-        "安全/对齐"
-      ],
-      "definition": "让 AI 可控、可信、不被滥用：越狱与防御、模型行为研究、安全评测与治理框架。"
-    },
-    {
-      "slug": "mcp",
-      "name": "MCP 与工具调用",
-      "group": "field",
-      "tags": [
-        "MCP/工具调用"
-      ],
-      "definition": "让 AI 连上外部软件和数据：MCP 协议、function calling 工具调用与各类工具集成。"
-    },
-    {
-      "slug": "model-releases",
-      "name": "模型发布",
+      "slug": "platform-rules",
+      "name": "平台规则",
       "group": "genre",
-      "tags": [
-        "模型发布"
-      ],
-      "definition": "各家新模型的发布、开源与迭代：旗舰更新、开源权重放出、能力与价格变化。"
+      "tags": ["平台规则"],
+      "definition": "平台规则、政策、费率、入口与治理的实质变化。"
     },
     {
-      "slug": "product-updates",
-      "name": "产品更新",
+      "slug": "promotions",
+      "name": "大促玩法",
       "group": "genre",
-      "tags": [
-        "产品更新"
-      ],
-      "definition": "AI 产品与应用的功能上新、改版与商业化——谁家的产品变强了、变贵了、能用了。"
+      "tags": ["大促玩法"],
+      "definition": "618、双 11、年货节等大促节奏、补贴与流量机制。"
     },
     {
-      "slug": "papers",
-      "name": "论文研究",
+      "slug": "category-trends",
+      "name": "品类趋势",
       "group": "genre",
-      "tags": [
-        "论文/研究"
-      ],
-      "definition": "值得读的 AI 论文与研究成果：架构创新、训练方法、能力测量与理论进展。"
+      "tags": ["品类趋势"],
+      "definition": "新品类、爆品、白牌与品牌格局、零售业态变化。"
     },
     {
-      "slug": "benchmarks",
-      "name": "评测基准",
+      "slug": "cross-border-genre",
+      "name": "跨境",
       "group": "genre",
-      "tags": [
-        "评测/基准"
-      ],
-      "definition": "模型到底谁更强：Benchmark 评测成绩、评测方法的争议与排行榜变化。"
+      "tags": ["跨境"],
+      "definition": "跨境平台、物流、支付与海外市场的政策变化。"
     },
     {
-      "slug": "tutorials",
-      "name": "教程实践",
+      "slug": "livestream-genre",
+      "name": "直播达人",
       "group": "genre",
-      "tags": [
-        "教程/实践"
-      ],
-      "definition": "拿来就能用的实操内容：提示词技巧、工作流搭建、工具用法与踩坑经验。"
+      "tags": ["直播达人"],
+      "definition": "主播、达人、MCN 与内容电商生态的变化。"
     },
     {
-      "slug": "opinions",
-      "name": "大佬观点",
+      "slug": "logistics-payment",
+      "name": "物流支付",
       "group": "genre",
-      "tags": [
-        "大佬观点"
-      ],
-      "definition": "行业关键人物在想什么：创始人访谈、研究者论战与投资人判断。"
+      "tags": ["物流支付"],
+      "definition": "物流价格与时效、支付牌照、收单费率与履约方式。"
     },
     {
-      "slug": "trends",
-      "name": "现象与趋势",
+      "slug": "regulation",
+      "name": "监管",
       "group": "genre",
-      "tags": [
-        "现象/趋势"
-      ],
-      "definition": "AI 正在改变什么：大家怎么用 AI、新能力的出现、对社会与市场格局的影响。"
+      "tags": ["监管"],
+      "definition": "市场监管总局、商务部、网信办等监管处罚、新规与执法。"
     },
     {
-      "slug": "industry",
-      "name": "行业动态",
+      "slug": "data-reports",
+      "name": "数据报告",
       "group": "genre",
-      "tags": [
-        "行业动态"
-      ],
-      "definition": "AI 圈的商业大事：融资并购、人事变动、合作与竞争、政策与市场变化。"
-    },
-    {
-      "slug": "policy",
-      "name": "政策监管",
-      "group": "genre",
-      "tags": [
-        "政策/监管"
-      ],
-      "definition": "AI 相关的政策法规与政府监管：立法进展、出口管制与全球治理。"
+      "tags": ["数据报告"],
+      "definition": "社零、平台财报、行业报告等权威一手数据。"
     }
   ]
 }
