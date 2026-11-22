@@ -1,4 +1,4 @@
-# 开放局域网访问（需要管理员权限，只需跑一次）
+﻿# 开放局域网访问（需要管理员权限，只需跑一次）
 #
 # 用法：右键「使用 PowerShell 运行」，或在管理员 PowerShell 里执行：
 #   powershell -ExecutionPolicy Bypass -File .\open-lan.ps1
@@ -12,9 +12,16 @@ $ErrorActionPreference = "Stop"
 
 $isAdmin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 if (-not $isAdmin) {
-    Write-Host "需要管理员权限。请右键这个文件 -> 使用 PowerShell 运行，或在管理员 PowerShell 里执行。" -ForegroundColor Red
-    pause
-    exit 1
+    Write-Host "需要管理员权限，正在弹出 UAC 授权窗口……" -ForegroundColor Cyan
+    try {
+        Start-Process -FilePath "powershell.exe" -Verb RunAs -ArgumentList @(
+            "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$PSCommandPath`""
+        ) | Out-Null
+    } catch {
+        Write-Host "提权被取消。请右键这个文件 -> 使用 PowerShell 运行，或手动以管理员身份执行。" -ForegroundColor Red
+        pause
+    }
+    exit
 }
 
 $port = 3000
