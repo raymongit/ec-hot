@@ -1,0 +1,25 @@
+# 公网入口覆盖层：只在需要对外访问时叠加
+#   docker compose -f docker-compose.yml -f docker-compose.public.yml up -d
+#
+# 作用：加一个 Caddy 反代（edge），公网流量走 3001，/admin 需要 Basic Auth。
+# 本机 3000 仍然直连，方便本地调试。
+name: aihot
+
+services:
+  edge:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    environment:
+      EDGE_ADMIN_HASH: ${EDGE_ADMIN_HASH}
+    volumes:
+      - ./deploy/Caddyfile.public:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+
+volumes:
+  caddy_data:
+  caddy_config:
