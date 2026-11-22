@@ -1,0 +1,9 @@
+# 密钥不进版本库
+.env
+
+# 运行产物
+logs/
+state/seen.json
+state/card-preview.json
+state/run.lock
+__pycache__/

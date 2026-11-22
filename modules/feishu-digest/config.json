@@ -1,0 +1,37 @@
+{
+  "site_name": "电商 HOT",
+  "edition": "早报",
+  "timezone": "Asia/Shanghai",
+  "lookback_hours": 30,
+  "max_items": 12,
+  "min_score": 6,
+  "max_per_source": 3,
+  "max_candidates": 150,
+  "llm": {
+    "base_url": "https://api.deepseek.com",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
+    "timeout_seconds": 180,
+    "retries": 2
+  },
+  "feishu": {
+    "app_id_env": "FEISHU_APP_ID",
+    "app_secret_env": "FEISHU_APP_SECRET",
+    "receive_id_env": "FEISHU_RECEIVE_ID",
+    "receive_id_type": "chat_id"
+  },
+  "sources": [
+    { "id": "ithome",     "name": "IT之家",          "url": "https://www.ithome.com/rss/",                          "tier": "T2" },
+    { "id": "jiemian",    "name": "界面新闻",         "url": "https://a.jiemian.com/index.php?m=article&a=rss",      "tier": "T2" },
+    { "id": "geekpark",   "name": "极客公园",         "url": "https://www.geekpark.net/rss",                        "tier": "T2" },
+    { "id": "ifanr",      "name": "爱范儿",           "url": "https://www.ifanr.com/feed",                          "tier": "T2" },
+    { "id": "tmtpost",    "name": "钛媒体",           "url": "https://www.tmtpost.com/rss.xml",                     "tier": "T2" },
+    { "id": "sspai",      "name": "少数派",           "url": "https://sspai.com/feed",                              "tier": "T2" },
+    { "id": "qbitai",     "name": "量子位",           "url": "https://www.qbitai.com/feed",                         "tier": "T2" },
+    { "id": "baijing",    "name": "白鲸出海",         "url": "https://www.baijing.cn/feed",                         "tier": "T2" },
+    { "id": "ennews",     "name": "亿恩网",           "url": "https://www.ennews.com/rss",                          "tier": "T2" },
+    { "id": "amazon",     "name": "Amazon 官方新闻",   "url": "https://www.aboutamazon.com/news/feed/",              "tier": "T1" },
+    { "id": "smzdm",      "name": "什么值得买·好价",   "url": "https://post.smzdm.com/feed",                         "tier": "T2" },
+    { "id": "iwangshang", "name": "天下网商",         "url": "https://www.iwangshang.com/feed",                     "tier": "T2" }
+  ]
+}
