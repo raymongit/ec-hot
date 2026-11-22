@@ -40,8 +40,15 @@ articles 936 / facts 86 / stories 85 / publications 685，首页今日 10 条。
 
 ### 待办
 
-- [ ] 修 2 个坏源：`web-zfzj`、`web-thepaper`
-- [ ] 核精选门槛与平台规则占比
-- [ ] 运行手册 `docs/电商HOT-运行手册.md`
-- [ ] 正式对外：买域名（`ecommerce.news` 待查）+ 云服务器 + 备案
+- [x] 修 2 个坏源：`web-zfzj`（站点下线）、`web-thepaper`（标题在 img alt）→ 均已 `enabled:false`（commit `fc81cba`）
+- [x] 核精选门槛与平台规则占比：门槛 T2 76→60，精选 2→18；**平台规则占比 0%**（根因是四家平台官方规则页 SPA 抓不到，需 Jina key）
+- [x] 运行手册 `docs/电商HOT-运行手册.md`（重启/备份/排障/改时间/加源/改标准/双推）
+- [ ] 正式对外：买域名（`ecommerce.news` 待查）+ 云服务器 + 备案（需用户拍板）
 - [ ] 有域名后可换回 Cloudflare Tunnel（需要能下载 cloudflared 时）
+
+### 公网入口验证（Multica 侧 12:40）
+
+- `edge` 容器 Up，`0.0.0.0:3001->3001`
+- `http://127.0.0.1:3001/` → 200（公开可读）
+- `http://127.0.0.1:3001/admin` → 401、`/api/admin/me` → 401（Basic Auth 生效）
+- `.env` 含 `EDGE_ADMIN_PASSWORD` / `EDGE_ADMIN_HASH`，均已 gitignore，未入库
