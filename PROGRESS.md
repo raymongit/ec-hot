@@ -46,6 +46,30 @@ articles 936 / facts 86 / stories 85 / publications 685，首页今日 10 条。
 - [ ] 正式对外：买域名（`ecommerce.news` 待查）+ 云服务器 + 备案（需用户拍板）
 - [ ] 有域名后可换回 Cloudflare Tunnel（需要能下载 cloudflared 时）
 
+## 2026-11-22 13:10 · 隧道加守护（修 502）
+
+### 502 的原因
+不是站点挂了（当时本机 3000 / 3001 都返回 200），是 SSH 隧道进程断了，serveo 连不到后端。
+
+### 现在的做法
+
+| 件 | 作用 |
+|---|---|
+| `tools/tunnel-supervisor.ps1` | 守护进程：ssh 退出 5 秒后自动重连，把当前地址写进 `%TEMP%\echot-public-url.txt` |
+| Startup 里的 `ECHOT-Tunnel.vbs` | 登录后自动拉起守护进程（隐藏窗口） |
+| `%TEMP%\echot-tunnel.log` | 重连日志 |
+
+查当前地址：
+
+```powershell
+Get-Content $env:TEMP\echot-public-url.txt
+```
+
+### 稳定性边界
+- 进程活着就一直可用，掉线会自动重连，但**地址会变**
+- 要固定地址：给 serveo 注册 SSH 公钥后可申请子域名（如 `echot.serveo.net`）
+- 要真正稳定：域名 + 云服务器 + 备案；或能下载 cloudflared 后换 Cloudflare Tunnel
+
 ### 公网入口验证（Multica 侧 12:40）
 
 - `edge` 容器 Up，`0.0.0.0:3001->3001`
