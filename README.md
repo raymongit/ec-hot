@@ -18,6 +18,10 @@
   把信源换成你的，把精选标准换成你的 KnowHow，它就是你的行业热点站。
 </p>
 
+<blockquote>
+<p><b>电商 HOT</b>：本项目是 <a href="https://github.com/KKKKhazix/AIHOT">AIHOT</a>（MIT 协议）的电商行业改造版，面向电商从业者的资讯热点平台，<b>非官方项目</b>。引擎与框架来自上游，信源清单、选稿标准、站点文案已改为电商视角。上游代码与协议见 <a href="https://github.com/KKKKhazix/AIHOT">github.com/KKKKhazix/AIHOT</a>。</p>
+</blockquote>
+
 <p align="center">
   <b>简体中文</b> · <a href="README.en.md">English</a>
 </p>
