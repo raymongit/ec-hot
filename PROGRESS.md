@@ -59,3 +59,27 @@
 1. 用户建两平台空仓库（或提供 Token）→ 跑 `scripts/sync-mirror.ps1` 完成首次双推
 2. 若用户提供 Jina key → 在后台加淘宝/京东/拼多多/抖音的 Jina web_list 源并试抓
 3. web-thepaper 选择器微调或删除（可选噪音源，非阻塞）
+
+## 2026-11-22 11:45（Multica RAY-58 第二轮，DSH 已建仓并收编推送管线）
+
+### 现状（DSH 侧已完成，不重复做）
+
+| 项 | 状态 |
+|---|---|
+| 双仓库 | GitHub/Gitee `raymongit/ec-hot` 已建（public），HEAD `c4ff9aa` 一致 |
+| 推送管线 | 已收编到 `modules/feishu-digest/`（原 `ec-hot-feishu/` 已删） |
+| 计划任务 | `ECHOT-Daily-Feishu` 已指向 `modules/feishu-digest/aihot.py`，下次 2026-11-23 09:00 |
+| 站点 | 首页/后台 200，容器 db/setup/api/worker/web 全 Up |
+
+### 本轮完成（Multica 侧）
+
+| 项 | 结果 | 证据 |
+|---|---|---|
+| web_list 校准 | 14 个 web_list 源里 13 个抓取正常；`web-thepaper`（澎湃）标题在 `<img alt>`、web_list 引擎读不到，已 `enabled:false` | `industry/sources.json` + DB `UPDATE sources SET enabled=false` |
+| 运行手册 | 路径从 `ec-hot-feishu/` 改到 `modules/feishu-digest/`，双推/重启说明更新 | `docs/电商HOT-运行手册.md` |
+| 内容链路 | 188 篇、180 篇已分析、36 事件、精选 1（门槛未校准，属 RAY-55 范畴） | DB 查询 |
+
+### 剩余卡点
+
+1. 平台官方源（淘宝/京东/拼多多/抖音）仍是 SPA/登录墙，需 `JINA_API_KEY` 才能用 Jina web_list 抓（.env 未配）
+2. 精选只有 1 条：`industry/selection.ts` 门槛沿用 AI 行业默认值（T2=76），电商样本校准在 RAY-55，不在本任务

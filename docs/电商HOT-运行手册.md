@@ -7,22 +7,22 @@
 
 ```
 C:\Users\19024\Documents\ecommerce-hot\
-├── AIHOT\                 # 站点（本仓库）：Next/React + PostgreSQL + Docker
-│   ├── industry\          # 行业知识：分类、信源、选稿标准、提示词
-│   ├── docs\sources.md    # 六种信源与配置（权威）
-│   ├── docs\selection.md  # 精选与发布规则（权威）
+├── AIHOT\                    # 站点（本仓库）：Next/React + PostgreSQL + Docker
+│   ├── industry\             # 行业知识：分类、信源、选稿标准、提示词
+│   ├── modules\feishu-digest\  # 飞书早报管线（RSS + DeepSeek 精选 + 飞书卡片）
+│   ├── docs\sources.md       # 六种信源与配置（权威）
+│   ├── docs\selection.md     # 精选与发布规则（权威）
 │   └── docker-compose.yml
-├── ec-hot-feishu\         # 飞书早报管线（独立目录，RSS + DeepSeek 精选 + 飞书卡片）
-└── PROGRESS.md            # 跨会话事实台账（DSH 侧与 Multica 侧共享）
+└── PROGRESS.md               # 跨会话事实台账（DSH 侧与 Multica 侧共享）
 ```
 
 - **站点**：`http://localhost:3000`，后台 `http://localhost:3000/admin`。跑在 WSL2 的 Docker 里。
-- **飞书早报**：Windows 计划任务 `ECHOT-Daily-Feishu`，每天 09:00 跑 `ec-hot-feishu/aihot.py` 推到群「电商 HOT 日报」。
+- **飞书早报**：Windows 计划任务 `ECHOT-Daily-Feishu`，每天 09:00 跑 `modules/feishu-digest/aihot.py` 推到群「电商 HOT 日报」。
 - **双仓库**：GitHub `raymongit/ec-hot`（origin）+ Gitee `raymongit/ec-hot`（gitee），上游是 `KKKKhazix/AIHOT`（upstream）。
 
 ## 1. 站点：起、停、看
 
-Docker 在 WSL2 的 Ubuntu-24.04 里（本机 Windows 没有 Docker）。从 Windows 打开终端后先进 WSL：
+Docker 在 WSL2 的 Ubuntu-24.04 里（本机 Windows 没有 Docker）。从 Windows 打开终端后先进 WSL（`/etc/wsl.conf` 已开 `systemd=true`，WSL 重启后 docker 会自动起来）：
 
 ```powershell
 wsl -d Ubuntu-24.04
@@ -79,14 +79,14 @@ docker compose down -v       # 停并删数据卷（数据库、抓取内容全�
 
 改动后重新构建并跑评测再上线：`scripts/eval-selection.ts`（见 `docs/selection.md`）。
 
-飞书早报的选稿标准是**另一套**：改 `ec-hot-feishu/aihot.py` 里的 `SYSTEM_PROMPT`/`USER_TEMPLATE`，门槛改 `ec-hot-feishu/config.json` 的 `min_score`。
+飞书早报的选稿标准是**另一套**：改 `modules/feishu-digest/aihot.py` 里的 `SYSTEM_PROMPT`/`USER_TEMPLATE`，门槛改 `modules/feishu-digest/config.json` 的 `min_score`。
 
 ## 4. 改推送时间
 
 飞书早报时间是 Windows 计划任务决定的，改时间重新注册即可：
 
 ```powershell
-cd C:\Users\19024\Documents\ecommerce-hot\ec-hot-feishu
+cd C:\Users\19024\Documents\ecommerce-hot\AIHOT\modules\feishu-digest
 powershell -ExecutionPolicy Bypass -File .\install_schedule.ps1 -Time 07:30   # 改成 07:30
 schtasks /Query /TN ECHOT-Daily-Feishu /V /FO LIST                            # 看下次运行时间
 schtasks /Run /TN ECHOT-Daily-Feishu                                           # 立即试跑
@@ -95,7 +95,7 @@ schtasks /Run /TN ECHOT-Daily-Feishu                                           #
 任务只在用户已登录时触发；关机/睡眠错过 09:00 不会补跑，次日手动补发：
 
 ```powershell
-cd C:\Users\19024\Documents\ecommerce-hot\ec-hot-feishu
+cd C:\Users\19024\Documents\ecommerce-hot\AIHOT\modules\feishu-digest
 C:\Users\19024\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe aihot.py   # 正式推一次
 C:\Users\19024\.dsh\dsh-runtimes\dsh-primary-runtime\dependencies\python\python.exe aihot.py --dry-run  # 只抓不推
 ```
@@ -113,7 +113,7 @@ powershell -NoProfile -File scripts/sync-mirror.ps1    # 检查 + dry-run + 推 
 powershell -NoProfile -File scripts/sync-mirror.ps1 -NoPush   # 只检查不推
 ```
 
-脚本会先做发布前检查（`.env`/`state`/`logs` 不提交、无密钥），再推 `main` + tags 到两个远端。两个远端都不存在时脚本会给出明确报错——需要先在 GitHub / Gitee 建好空的 `ec-hot` 仓库（不要勾选 README/.gitignore/license），才能推。
+脚本会先做发布前检查（`.env`/`state`/`logs` 不提交、无密钥），再推 `main` + tags 到两个远端。两个远端（GitHub/Gitee 的 `ec-hot`）已建好并 public，推完后两个平台的 `main` 应指向同一 commit。
 
 ## 6. 排障
 
@@ -121,7 +121,7 @@ powershell -NoProfile -File scripts/sync-mirror.ps1 -NoPush   # 只检查不推
 |---|---|---|
 | 站点打不开 | `wsl -d Ubuntu-24.04` 里 `docker compose ps` / `logs web` | 容器没起来看日志；端口被占用改 `.env` 的 `PORT` |
 | 后台抓取失败/标红 | 后台「信源」页的失败原因 | 选择器不匹配 → 试抓微调；SPA 页 → Jina；网络 → 检查代理 |
-| 早报没收到 | `ec-hot-feishu/logs/aihot-YYYY-MM-DD.log` | 看 `信源异常`/`推送成功`；重跑 `schtasks /Run` |
+| 早报没收到 | `modules/feishu-digest/logs/aihot-YYYY-MM-DD.log` | 看 `信源异常`/`推送成功`；重跑 `schtasks /Run` |
 | 早报内容少（5–7 条/天） | 同上日志 | 正常：飞书版只吃 RSS，平台官方源是 SPA 抓不到，等站点 web_list 补齐 |
 | 推送失败 | 计划任务 `Last Result` | `schtasks /Query /TN ECHOT-Daily-Feishu /V /FO LIST` 看错误码 |
 | 双推失败 | `scripts/sync-mirror.ps1` 的报错 | 它会把 git 报错翻译成人话（仓库不存在 / SSH / 网络 / 冲突） |
@@ -129,7 +129,7 @@ powershell -NoProfile -File scripts/sync-mirror.ps1 -NoPush   # 只检查不推
 
 ## 7. 密钥与红线
 
-- 密钥只在各目录的 `.env`（站点 `AIHOT/.env`、早报 `ec-hot-feishu/.env`），均已 gitignore，**绝不写进 issue、代码或本手册**。
+- 密钥只在各目录的 `.env`（站点 `AIHOT/.env`、早报 `AIHOT/modules/feishu-digest/.env`），均已 gitignore，**绝不写进 issue、代码或本手册**。
 - 站名统一「电商 HOT」，不用 AIHOT 的名字和 Logo。
-- `ai-hot-feishu`（AI 版）只读不改；本项目的早报是 `ec-hot-feishu`。
+- `ai-hot-feishu`（AI 版）只读不改；本项目的早报是 `modules/feishu-digest`。
 - 装软件、对外发布、删数据这类不可逆动作先确认再做。
