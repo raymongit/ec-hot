@@ -37,10 +37,10 @@
 
 ### 待办
 
-- [ ] 修 2 个坏源：`web-zfzj`（fetch failed）、`web-thepaper`（选择器失效）
-- [ ] 核精选门槛：今日 10 条是否合适，平台规则类占比够不够
-- [ ] 运行手册 `docs/电商HOT-运行手册.md`
-- [ ] 内容质量校准（标注样本 + 精确率）
+- [x] 修 2 个坏源：`web-zfzj`（站点下线，域名/备案过期）、`web-thepaper`（标题在 img alt 读不到）——均已 `enabled:false`（commit `fc81cba`）
+- [x] 核精选门槛：`industry/selection.ts` T2 76→60，精选 2→18 条；**平台规则占比 0%**（整个内容池仅 2 条 platform-rules，根因是淘宝/京东/拼多多/抖音官方规则页 SPA 抓不到，非门槛问题）
+- [x] 运行手册 `docs/电商HOT-运行手册.md`（重启/备份/排障/改时间/加源/改标准/双推）
+- [ ] 内容质量校准（标注样本 + 精确率）——需 `JINA_API_KEY` 接平台官方源 + 电商标注样本，走 `scripts/eval-selection.ts`
 
 ### 常用命令
 
