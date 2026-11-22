@@ -233,7 +233,8 @@
       "interval_minutes": 60,
       "tags": ["物流支付"],
       "site_fulltext": false,
-      "syndicate_fulltext": false
+      "syndicate_fulltext": false,
+      "enabled": false
     },
     {
       "id": "web-mpaypass",
